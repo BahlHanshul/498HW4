@@ -1,0 +1,5 @@
+The SQL version of /co-area-drivers would use tables like Drivers, Companies, Areas, and Trips. First, we would find all dropoff areas visited by the given driver from the Trips table. Then we would join the Trips table with itself on dropoff_area to find other drivers who also visited those areas. After that, we exclude the original driver, group by the other driver’s id, count the number of distinct shared areas, and sort the results in descending order.
+
+This query is more natural in Neo4j because it directly follows relationships in the graph from Driver to Area and back to other Driver nodes. Since graph databases use index-free adjacency, once a node is found, traversing its relationships is fast and does not require expensive joins. This makes multi-step relationship queries easier to write and often more efficient.
+
+However, Neo4j may perform worse than a relational database when doing large aggregations over the entire dataset, such as computing totals or averages across many records. Relational databases are usually better optimized for these types of operations and can handle large scans more efficiently.

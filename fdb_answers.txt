@@ -1,0 +1,9 @@
+Q1: FoundationDB separates transaction management from storage so each layer can focus on its own role and scale independently. The transaction layer handles ordering and conflict checking, while the storage layer handles storing and serving data. This makes the system more modular and easier to manage.
+
+Q2: Read-write conflicts are detected by the resolver during the commit phase. After a transaction gathers its reads and writes, the system checks for conflicts before finalizing the commit. If a conflict is found, the transaction is aborted and retried.
+
+Q3: The read version gives a transaction a consistent snapshot of the database at a specific point in time. All reads use this version, so the data doesn’t change during execution. This ensures the transaction sees a stable and consistent view.
+
+Q4: Snapshot reads do not track conflicts, while normal reads do. This means snapshot reads won’t cause a transaction to fail if data changes. They are useful for non-critical reads, while normal reads are used when correctness is important.
+
+Q5: Recovery is efficient because changes are already logged and applied during normal operation. LogServers store updates, and StorageServers continuously apply them. This removes the need for heavy log replay during recovery.
