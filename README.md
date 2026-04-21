@@ -20,4 +20,4 @@ This project involves building a graph database using Neo4j, creating API endpoi
 ## Screenshot (Part 2.1)
 Below is a screenshot showing the contents of the `processed_data/` folder and a sample part file output:
 
-![Processed Data Screenshot](498hw4.png)
+![Processed Data Screenshot](498hw4.jpeg)
